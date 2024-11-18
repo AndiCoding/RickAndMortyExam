@@ -32,6 +32,7 @@ object ApiRick
 @Serializable
 object ShowRick
 
+
 @Serializable
 object CreateRick
 

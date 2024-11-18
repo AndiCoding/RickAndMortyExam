@@ -10,7 +10,7 @@ import com.example.rickandmortyexam.navigation.AppNavigation
 import com.example.rickandmortyexam.ui.theme.RickAndMortyExamTheme
 
 class MainActivity : ComponentActivity() {
-    val apiRickViewModel : ApiRickViewModel by viewModels()
+    private val apiRickViewModel : ApiRickViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
