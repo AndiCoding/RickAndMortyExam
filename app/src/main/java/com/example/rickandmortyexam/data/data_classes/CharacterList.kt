@@ -10,5 +10,5 @@ data class Info(
 
 data class CharacterList(
     val info: Info,
-    val results: List<Character>
+    val results: List<RickAndMortyCharacter>
 )
