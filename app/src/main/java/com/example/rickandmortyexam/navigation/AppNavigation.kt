@@ -33,16 +33,12 @@ object ApiRick
 @Serializable
 object ShowRick
 
-
 @Serializable
 object CreateRick
-
-
 
 @Composable
 fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
     val navController = rememberNavController()
-
 
     var chosenScreen by remember {
         mutableIntStateOf(0)
