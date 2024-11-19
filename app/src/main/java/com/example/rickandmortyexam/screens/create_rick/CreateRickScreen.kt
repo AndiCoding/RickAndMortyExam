@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
+import com.example.rickandmortyexam.ui.theme.Typography
 
 //Screen 3
 @Composable
@@ -32,7 +33,7 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
 
     Column(Modifier.fillMaxSize())
     {
-        Text("Create Rick&Morty Character")
+        Text("Create Character", style = Typography.headlineLarge)
         TextField(
             value = userCharacter.name,
             onValueChange = { userCharacter = userCharacter.copy(name = it) },
