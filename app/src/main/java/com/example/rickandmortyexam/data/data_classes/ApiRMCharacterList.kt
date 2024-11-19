@@ -8,7 +8,7 @@ data class Info(
     val prev: String?
 )
 
-data class CharacterList(
+data class ApiRMCharacterList(
     val info: Info,
     val results: List<ApiRMCharacter>
 )
