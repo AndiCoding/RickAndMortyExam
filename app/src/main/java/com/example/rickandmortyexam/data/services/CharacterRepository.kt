@@ -1,7 +1,7 @@
 package com.example.rickandmortyexam.data.services
 
 import android.util.Log
-import com.example.rickandmortyexam.data.data_classes.Character
+import com.example.rickandmortyexam.data.data_classes.ApiRMCharacter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,7 +28,7 @@ object CharacterRepository {
     private val _characterService = _retrofit
         .create(CharacterService::class.java)
 
-    suspend fun getAllCharacters(): List<Character> {
+    suspend fun getAllCharacters(): List<ApiRMCharacter> {
 
         try {
             val response = _characterService.getCharacters()

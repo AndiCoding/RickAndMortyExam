@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyexam.screens.api_rick.ApiRickScreen
 import com.example.rickandmortyexam.screens.create_rick.CreateRickScreen
 import com.example.rickandmortyexam.screens.api_rick.ApiRickViewModel
+import com.example.rickandmortyexam.screens.create_rick.CreateRickViewModel
 import com.example.rickandmortyexam.screens.show_rick.ShowRickScreen
 import kotlinx.serialization.Serializable
 
@@ -113,7 +114,7 @@ fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
                     ShowRickScreen()
                 }
                 composable<CreateRick> {
-                    CreateRickScreen()
+                    CreateRickScreen(createRickViewModel = CreateRickViewModel())
                 }
 
             }
