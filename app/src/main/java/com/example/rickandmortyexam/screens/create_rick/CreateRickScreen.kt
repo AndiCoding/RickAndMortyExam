@@ -2,8 +2,6 @@ package com.example.rickandmortyexam.screens.create_rick
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -20,7 +18,6 @@ import com.example.rickandmortyexam.ui.theme.Typography
 //Screen 3
 @Composable
 fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
-    val characters = createRickViewModel.character.collectAsState()
 
     var userCharacter by remember { mutableStateOf(RoomRMCharacter(
         name = "",
@@ -30,6 +27,11 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
         gender = ""
     )) }
 
+    // Collect the created character from the view model
+    val createdCharacter by
+        createRickViewModel
+            .getCreatedCharacter()
+            .collectAsState(RoomRMCharacter())
 
     Column(Modifier.fillMaxSize())
     {
@@ -60,18 +62,17 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
             label = { Text("Gender") }
         )
         Button(onClick = {
-
             createRickViewModel.insertCharacter(userCharacter)
         }){
             Text("Create Character")
         }
-        LazyColumn { items(characters.value) { character ->
-            Text(text = character.name)
-            Text(text = character.status)
-            Text(text = character.species)
-            Text(text = character.type)
-            Text(text = character.gender)
-        } }
+
+
+        // displays the created character if it exists
+        if (createdCharacter.id != 0) {
+            Text("Created Character: ${createdCharacter.name}")
+        }
+
 
     }
 }
