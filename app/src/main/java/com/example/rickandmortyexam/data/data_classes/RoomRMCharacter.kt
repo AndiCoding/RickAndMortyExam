@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class RickAndMortyCharacter(
+data class RoomRMCharacter(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0, // por defecto es 0, "seed" for id
+    val id: Int = 0, //
     val name: String?,
     val status: String?,
     val species: String?,

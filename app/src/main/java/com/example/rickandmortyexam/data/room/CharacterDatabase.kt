@@ -2,11 +2,11 @@ package com.example.rickandmortyexam.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.rickandmortyexam.data.data_classes.RickAndMortyCharacter
+import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 
 
 @Database(
-    entities=[RickAndMortyCharacter::class],
+    entities=[RoomRMCharacter::class],
     version=1,
     exportSchema=false
 )

@@ -6,11 +6,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.rickandmortyexam.data.data_classes.RickAndMortyCharacter
+import com.example.rickandmortyexam.data.data_classes.ApiRMCharacter
+import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 
 
 @Composable
-fun CharacterItem(character: RickAndMortyCharacter) {
+fun CharacterItem(character: ApiRMCharacter) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement =

@@ -2,7 +2,6 @@ package com.example.rickandmortyexam.screens.create_rick
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -13,8 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.example.rickandmortyexam.components.CharacterItem
-import com.example.rickandmortyexam.data.data_classes.RickAndMortyCharacter
+import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 
 //Screen 3
 @Composable
@@ -56,7 +54,7 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
             label = { Text("Gender") }
         )
         Button(onClick = {
-            val newCharacter = RickAndMortyCharacter(name = name, status = status, species = species, type = type, gender = gender)
+            val newCharacter = RoomRMCharacter(name = name, status = status, species = species, type = type, gender = gender)
         }){
             Text("Create Character")
         }
