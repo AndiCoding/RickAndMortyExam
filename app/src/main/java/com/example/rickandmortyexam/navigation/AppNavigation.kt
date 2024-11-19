@@ -25,6 +25,7 @@ import com.example.rickandmortyexam.screens.create_rick.CreateRickScreen
 import com.example.rickandmortyexam.screens.api_rick.ApiRickViewModel
 import com.example.rickandmortyexam.screens.create_rick.CreateRickViewModel
 import com.example.rickandmortyexam.screens.show_rick.ShowRickScreen
+import com.example.rickandmortyexam.screens.show_rick.ShowRickViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -107,7 +108,7 @@ fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
                     ApiRickScreen(apiRickViewModel)
                 }
                 composable<ShowRick> {
-                    ShowRickScreen()
+                    ShowRickScreen(showRickViewModel = ShowRickViewModel())
                 }
                 composable<CreateRick> {
                     CreateRickScreen(createRickViewModel = CreateRickViewModel())
