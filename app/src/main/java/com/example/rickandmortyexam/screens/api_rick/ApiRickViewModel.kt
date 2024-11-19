@@ -14,6 +14,8 @@ class ApiRickViewModel : ViewModel() {
 
     private var pageInfo: Info? = null
 
+
+
     fun getInitialCharacters() {
         viewModelScope.launch {
                 val (firstCharacters, info) = _characterRepository.getCharacters()
@@ -21,7 +23,6 @@ class ApiRickViewModel : ViewModel() {
                 pageInfo = info
         }
     }
-
 
     fun nextCharacters() {
         viewModelScope.launch {
