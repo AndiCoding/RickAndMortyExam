@@ -112,7 +112,7 @@ fun AppNavigation(
                     ApiRickScreen(apiRickViewModel)
                 }
                 composable<ShowRick> {
-                    ShowRickScreen()
+                    ShowRickScreen(showRickViewModel = ShowRickViewModel())
                 }
                 composable<CreateRick> {
                     CreateRickScreen(createRickViewModel)
