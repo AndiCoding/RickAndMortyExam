@@ -1,8 +1,6 @@
 package com.example.rickandmortyexam.screens.show_rick
 
 import androidx.lifecycle.ViewModel
-
-class ShowRickViewModel : ViewModel() {
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 import com.example.rickandmortyexam.data.room.CharacterDatabaseRepository

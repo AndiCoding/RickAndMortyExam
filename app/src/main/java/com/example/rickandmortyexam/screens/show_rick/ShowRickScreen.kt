@@ -23,7 +23,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
         }
         LazyColumn {
             items(characters.value) { character ->
-                Text(text = character.name.toString())
+                Text(text = character.name)
             }
         }
     }
