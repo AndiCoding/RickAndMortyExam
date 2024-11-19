@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import com.example.rickandmortyexam.data.room.CharacterDatabaseRepository
 import com.example.rickandmortyexam.screens.api_rick.ApiRickViewModel
 import com.example.rickandmortyexam.navigation.AppNavigation
 import com.example.rickandmortyexam.screens.create_rick.CreateRickViewModel
@@ -17,6 +18,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        CharacterDatabaseRepository.initializeDatabase(applicationContext)
+
         enableEdgeToEdge()
         setContent {
             RickAndMortyExamTheme {
