@@ -9,6 +9,6 @@ data class Info(
 )
 
 data class ApiRMCharacterList(
-    val info: Info,
+    val info: Info?,
     val results: List<ApiRMCharacter>
 )
