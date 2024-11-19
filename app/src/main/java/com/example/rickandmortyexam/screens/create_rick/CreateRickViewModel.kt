@@ -13,7 +13,7 @@ class CreateRickViewModel: ViewModel() {
     val character = _characters.asStateFlow()
 
 
-    fun insertCharacter(character: RoomRMCharacter) {
+    fun insertCharacter(character: RoomRMCharacter){
         viewModelScope.launch(Dispatchers.IO) {
             val  newCharId = CharacterDatabaseRepository.insertCharacter(character)
             if (newCharId != -1L) {

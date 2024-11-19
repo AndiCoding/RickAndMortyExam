@@ -38,11 +38,15 @@ object ShowRick
 object CreateRick
 
 @Composable
-fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
+fun AppNavigation(
+    apiRickViewModel: ApiRickViewModel,
+    createRickViewModel: CreateRickViewModel,
+    showRickViewModel: ShowRickViewModel
+) {
     val navController = rememberNavController()
 
     var chosenScreen by remember {
-        mutableIntStateOf(0)
+        mutableIntStateOf(1)
     }
 
     Scaffold(
@@ -102,7 +106,7 @@ fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
         Column(modifier = Modifier.padding(innerPadding)) {
             NavHost(
                 navController = navController,
-                startDestination = ApiRick
+                startDestination = ShowRick
             ) {
                 composable<ApiRick> {
                     ApiRickScreen(apiRickViewModel)
@@ -111,7 +115,7 @@ fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
                     ShowRickScreen(showRickViewModel = ShowRickViewModel())
                 }
                 composable<CreateRick> {
-                    CreateRickScreen(createRickViewModel = CreateRickViewModel())
+                    CreateRickScreen(createRickViewModel)
                 }
 
             }

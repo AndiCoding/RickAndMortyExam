@@ -7,7 +7,7 @@ import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 
 @Database(
     entities=[RoomRMCharacter::class],
-    version=1,
+    version=2,
     exportSchema=false
 )
 
