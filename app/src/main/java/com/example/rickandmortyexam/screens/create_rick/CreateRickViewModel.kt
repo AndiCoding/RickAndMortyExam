@@ -18,7 +18,7 @@ class CreateRickViewModel: ViewModel() {
         }
     }
 
-    fun insertCharacter(character: RoomRMCharacter) {
+    fun insertCharacter(character: RoomRMCharacter){
         viewModelScope.launch(Dispatchers.IO) {
             val  newCharId = CharacterDatabaseRepository.insertCharacter(character)
             if (newCharId != -1L) {

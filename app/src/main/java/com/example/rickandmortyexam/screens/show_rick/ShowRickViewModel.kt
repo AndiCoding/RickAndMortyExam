@@ -1,4 +1,6 @@
 package com.example.rickandmortyexam.screens.show_rick
 
-class ShowRickViewModel {
+import androidx.lifecycle.ViewModel
+
+class ShowRickViewModel : ViewModel() {
 }

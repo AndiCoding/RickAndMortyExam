@@ -17,7 +17,7 @@ object CharacterDatabaseRepository {
             context = context,
             klass = CharacterDatabase::class.java,
             name = "character_database"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     //Get all characters

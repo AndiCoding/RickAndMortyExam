@@ -25,6 +25,7 @@ import com.example.rickandmortyexam.screens.create_rick.CreateRickScreen
 import com.example.rickandmortyexam.screens.api_rick.ApiRickViewModel
 import com.example.rickandmortyexam.screens.create_rick.CreateRickViewModel
 import com.example.rickandmortyexam.screens.show_rick.ShowRickScreen
+import com.example.rickandmortyexam.screens.show_rick.ShowRickViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -37,11 +38,15 @@ object ShowRick
 object CreateRick
 
 @Composable
-fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
+fun AppNavigation(
+    apiRickViewModel: ApiRickViewModel,
+    createRickViewModel: CreateRickViewModel,
+    showRickViewModel: ShowRickViewModel
+) {
     val navController = rememberNavController()
 
     var chosenScreen by remember {
-        mutableIntStateOf(0)
+        mutableIntStateOf(1)
     }
 
     Scaffold(
@@ -101,7 +106,7 @@ fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
         Column(modifier = Modifier.padding(innerPadding)) {
             NavHost(
                 navController = navController,
-                startDestination = ApiRick
+                startDestination = ShowRick
             ) {
                 composable<ApiRick> {
                     ApiRickScreen(apiRickViewModel)
@@ -110,7 +115,7 @@ fun AppNavigation(apiRickViewModel: ApiRickViewModel) {
                     ShowRickScreen()
                 }
                 composable<CreateRick> {
-                    CreateRickScreen(createRickViewModel = CreateRickViewModel())
+                    CreateRickScreen(createRickViewModel)
                 }
 
             }
