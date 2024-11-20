@@ -11,9 +11,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class CreateRickViewModel: ViewModel() {
+
     val createdCharacter = MutableStateFlow(RoomRMCharacter())
+
     private val _message = MutableStateFlow<String?>(null)
     val message: StateFlow<String?> get() = _message
+
 
     fun updateCharacterField(fieldName: String, value: String) {
         createdCharacter.value = when (fieldName) {
