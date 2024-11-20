@@ -8,38 +8,54 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class ApiRickViewModel : ViewModel() {
+
+    // Repository object with connection to the API
     private val _characterRepository : CharacterRepository = CharacterRepository
 
+    // List of characters gathered from the API. the list is overwritten
+    // with new characters when the next or previous page is fetched.
+
     val characters = MutableStateFlow<List<ApiRMCharacter>>(emptyList())
+
+    // metadata about the current page of characters.
+    // Contains info about next and prev page
 
     private var pageInfo: Info? = null
 
 
-
-    fun getInitialCharacters() {
+    // Fetches the first page of characters from the API when the view model is created.
+    init {
         viewModelScope.launch {
-                val (firstCharacters, info) = _characterRepository.getCharacters()
-                characters.value = firstCharacters
-                pageInfo = info
+            getCharacters()
         }
     }
 
     fun nextCharacters() {
         viewModelScope.launch {
-            if (pageInfo?.next != null) {
-                val (nextCharacters, info) = _characterRepository.getCharacters(pageInfo?.next ?: "")
-                characters.value = nextCharacters
-                pageInfo = info}
+            pageInfo?.next?.let { getCharacters(it) }
+
+        }
+    }
+    fun prevCharacters() {
+        viewModelScope.launch {
+            pageInfo?.prev?.let { getCharacters(it) }
         }
     }
 
-    fun prevCharacters() {
-        viewModelScope.launch {
-            if (pageInfo?.prev != null) {
-                val (prevCharacters, info) = _characterRepository.getCharacters(pageInfo?.prev ?: "")
-                characters.value = prevCharacters
-                pageInfo = info }
-        }
+    private suspend fun getCharacters(url: String = "character") {
+        val (characters, info) = _characterRepository.getCharacters(url)
+        this.characters.value = characters
+        pageInfo = info
     }
 
 }
+
+
+/*
+* if (pageInfo?.next != null) {
+                getCharacters(pageInfo?.next ?: "")}
+            if (pageInfo?.prev != null) {
+                getCharacters(pageInfo?.prev ?: "")
+            }
+*
+* */

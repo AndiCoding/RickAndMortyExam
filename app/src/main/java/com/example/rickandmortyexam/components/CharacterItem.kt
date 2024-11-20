@@ -1,10 +1,8 @@
 package com.example.rickandmortyexam.components
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.rickandmortyexam.data.data_classes.ApiRMCharacter
-import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
+
 
 
 @Composable

@@ -27,11 +27,14 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
         gender = ""
     )) }
 
+
+
     // Collect the created character from the view model
     val createdCharacter by
         createRickViewModel
             .getCreatedCharacter()
             .collectAsState(RoomRMCharacter())
+
 
     Column(Modifier.fillMaxSize())
     {

@@ -1,6 +1,5 @@
 package com.example.rickandmortyexam.navigation
 
-import android.content.res.Resources.Theme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -8,7 +7,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -114,7 +112,7 @@ fun AppNavigation(
                     ApiRickScreen(apiRickViewModel)
                 }
                 composable<ShowRick> {
-                    ShowRickScreen(showRickViewModel = ShowRickViewModel())
+                    ShowRickScreen(showRickViewModel)
                 }
                 composable<CreateRick> {
                     CreateRickScreen(createRickViewModel)

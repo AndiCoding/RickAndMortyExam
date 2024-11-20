@@ -15,3 +15,4 @@ interface CharacterDao {
     suspend fun insertCharacter(character: RoomRMCharacter): Long // returns the id of the inserted character
 
 }
+
