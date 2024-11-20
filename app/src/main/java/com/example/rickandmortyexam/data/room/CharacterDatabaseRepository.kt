@@ -36,10 +36,12 @@ object CharacterDatabaseRepository {
 
     // insert a new character, returns the id of the
     // new character, or -1 if there was an error
+    // uncomment the throw SQLException() line to test the error handling in the view
 
     suspend fun insertCharacter(character: RoomRMCharacter): Long{
         return try {
             _characterDao.insertCharacter(character)
+            //throw SQLException()
         } catch (e:SQLException){
             Log.e("Database Error", e.toString())
             -1L
