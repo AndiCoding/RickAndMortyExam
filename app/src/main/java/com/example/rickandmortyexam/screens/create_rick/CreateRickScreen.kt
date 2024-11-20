@@ -8,74 +8,52 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 import com.example.rickandmortyexam.ui.theme.Typography
 
 //Screen 3
 @Composable
 fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
 
-    var userCharacter by remember { mutableStateOf(RoomRMCharacter(
-        name = "",
-        status = "",
-        species = "",
-        type = "",
-        gender = ""
-    )) }
-
-
-
     // Collect the created character from the view model
-    val createdCharacter by
-        createRickViewModel
-            .getCreatedCharacter()
-            .collectAsState(RoomRMCharacter())
+    val createdCharacterScreen by
+        createRickViewModel.createdCharacter.collectAsState()
 
-
+    
     Column(Modifier.fillMaxSize())
     {
         Text("Create Character", style = Typography.headlineLarge)
         TextField(
-            value = userCharacter.name,
-            onValueChange = { userCharacter = userCharacter.copy(name = it) },
+            value = createdCharacterScreen.name,
+            onValueChange = { createRickViewModel.updateCharacterField("name", it) },
             label = { Text("Name") }
         )
         TextField(
-            value = userCharacter.status,
-            onValueChange = { userCharacter = userCharacter.copy(status = it) },
+            value = createdCharacterScreen.status,
+            onValueChange = { createRickViewModel.updateCharacterField("status", it) },
             label = { Text("Status") }
         )
         TextField(
-            value = userCharacter.species,
-            onValueChange = { userCharacter = userCharacter.copy(species = it) },
+            value = createdCharacterScreen.species,
+            onValueChange = {createRickViewModel.updateCharacterField("species", it) },
             label = { Text("Species") }
         )
         TextField(
-            value = userCharacter.type,
-            onValueChange = { userCharacter = userCharacter.copy(type = it) },
+            value = createdCharacterScreen.type,
+            onValueChange = { createRickViewModel.updateCharacterField("type", it) },
             label = { Text("Type") }
         )
         TextField(
-            value = userCharacter.gender,
-            onValueChange = { userCharacter = userCharacter.copy(gender = it) },
+            value = createdCharacterScreen.gender,
+            onValueChange = { createRickViewModel.updateCharacterField("gender", it) },
             label = { Text("Gender") }
         )
+
         Button(onClick = {
-            createRickViewModel.insertCharacter(userCharacter)
+            createRickViewModel.insertCharacter()
         }){
             Text("Create Character")
         }
-
-
-        // displays the created character if it exists
-        if (createdCharacter.id != 0) {
-            Text("Created Character: ${createdCharacter.name}")
-        }
-
 
     }
 }

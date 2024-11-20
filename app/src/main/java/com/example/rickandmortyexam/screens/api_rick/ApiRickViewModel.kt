@@ -49,13 +49,3 @@ class ApiRickViewModel : ViewModel() {
     }
 
 }
-
-
-/*
-* if (pageInfo?.next != null) {
-                getCharacters(pageInfo?.next ?: "")}
-            if (pageInfo?.prev != null) {
-                getCharacters(pageInfo?.prev ?: "")
-            }
-*
-* */

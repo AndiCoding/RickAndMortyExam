@@ -8,29 +8,35 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.sql.SQLException
 
 class CreateRickViewModel: ViewModel() {
-    private val _createdCharacter = MutableStateFlow(RoomRMCharacter())
+    val createdCharacter = MutableStateFlow(RoomRMCharacter())
 
-     fun insertCharacter(character: RoomRMCharacter) {
+    fun updateCharacterField(fieldName: String, value: String) {
+        createdCharacter.value = when (fieldName) {
+            "name" -> createdCharacter.value.copy(name = value)
+            "status" -> createdCharacter.value.copy(status = value)
+            "species" -> createdCharacter.value.copy(species = value)
+            "type" -> createdCharacter.value.copy(type = value)
+            "gender" -> createdCharacter.value.copy(gender = value)
+            else -> createdCharacter.value
+        }
+    }
+
+
+    // function that empties the createdCharacter field if successful insert
+     fun insertCharacter() {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val newCharId = CharacterDatabaseRepository.insertCharacter(character)
-                if (newCharId != -1L) {
-                    _createdCharacter.value = character.copy(id = newCharId.toInt())
-                }
-                println(newCharId)
-            } catch( e: SQLException) {
-                Log.e("SQL Error", "Error inserting character", e)
-            }
-            catch (e: Exception) {
-                Log.e("Unknown Error", "Error inserting character", e)
+            val newCharId = CharacterDatabaseRepository.insertCharacter(createdCharacter.value)
+            if (newCharId != -1L) {
+                //createdCharacter.value = createdCharacter.value.copy(id = newCharId.toInt())
+                createdCharacter.value = RoomRMCharacter()
+            } else {
+                Log.e("CreateRickViewModel", "Error inserting character")
             }
         }
     }
 
-    fun getCreatedCharacter() = _createdCharacter
 }
 
 

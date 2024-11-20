@@ -22,25 +22,30 @@ object CharacterDatabaseRepository {
 
     //Get all characters
     suspend fun getDatabaseCharacters(): List<RoomRMCharacter>{
-        try {
-            return _characterDao.getCharacters()
-
+        return try {
+             _characterDao.getCharacters()
         }catch (e: SQLException){
-            Log.e("DatabaseError", e.toString())
-            return emptyList()
+            Log.e("Database Error", "Error in database while getting characters", e)
+            emptyList()
+        } catch (e: Exception){
+            Log.e("Unknown Error", "Unkonwn error getting characters", e)
+            emptyList()
+    }
+    }
 
-        }catch (e: Exception){
-            Log.e("OtherError", e.toString())
-            return emptyList()
-    }
-    }
-    // insert a new character
+
+    // insert a new character, returns the id of the
+    // new character, or -1 if there was an error
+
     suspend fun insertCharacter(character: RoomRMCharacter): Long{
-        try {
-            return _characterDao.insertCharacter(character)
-        }catch (e:SQLException){
-            Log.e("DatabaseError", e.toString())
-            return -1L
+        return try {
+            _characterDao.insertCharacter(character)
+        } catch (e:SQLException){
+            Log.e("Database Error", e.toString())
+            -1L
+        } catch (e: Exception){
+            Log.e("Unknown Error", e.toString())
+            -1L
         }
     }
 }

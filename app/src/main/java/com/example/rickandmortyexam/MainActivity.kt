@@ -12,7 +12,10 @@ import com.example.rickandmortyexam.screens.create_rick.CreateRickViewModel
 import com.example.rickandmortyexam.screens.show_rick.ShowRickViewModel
 import com.example.rickandmortyexam.ui.theme.RickAndMortyExamTheme
 
+
+
 class MainActivity : ComponentActivity() {
+
     private val apiRickViewModel by viewModels<ApiRickViewModel>()
     private val createRickViewModel by viewModels<CreateRickViewModel>()
     private val showRickViewModel by viewModels<ShowRickViewModel>()
