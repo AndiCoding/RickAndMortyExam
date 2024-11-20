@@ -27,7 +27,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
 
-    // Collect the created character from the view model
+    // Collect updated character fields, that has been updated by the user
     val createdCharacterScreen by
         createRickViewModel.createdCharacter.collectAsState()
 
@@ -43,7 +43,7 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
 
     Column(
         Modifier.fillMaxSize(),
-        Arrangement.SpaceEvenly,
+        Arrangement.SpaceBetween,
         horizontalAlignment =
             Alignment.CenterHorizontally
     )
@@ -81,7 +81,6 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
             )
 
         }
-
 
         Button(onClick = {
             createRickViewModel.insertCharacter()

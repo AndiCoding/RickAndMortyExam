@@ -14,9 +14,11 @@ class ShowRickViewModel: ViewModel() {
     private val _characters = MutableStateFlow<List<RoomRMCharacter>>(emptyList()) //can be modified
     val character = _characters.asStateFlow()
 
+
     fun setCharacter(){
         viewModelScope.launch (Dispatchers.IO) {
             _characters.value = CharacterDatabaseRepository.getDatabaseCharacters()
         }
     }
 }
+
