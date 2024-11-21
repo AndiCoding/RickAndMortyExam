@@ -26,6 +26,8 @@ import com.example.rickandmortyexam.screens.api_rick.ApiRickViewModel
 import com.example.rickandmortyexam.screens.create_rick.CreateRickViewModel
 import com.example.rickandmortyexam.screens.show_rick.ShowRickScreen
 import com.example.rickandmortyexam.screens.show_rick.ShowRickViewModel
+import com.example.rickandmortyexam.screens.tictac_rick.TicTacRickScreen
+import com.example.rickandmortyexam.screens.tictac_rick.TicTacRickViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -37,11 +39,15 @@ object ShowRick
 @Serializable
 object CreateRick
 
+@Serializable
+object TicTacRick
+
 @Composable
 fun AppNavigation(
     apiRickViewModel: ApiRickViewModel,
     createRickViewModel: CreateRickViewModel,
-    showRickViewModel: ShowRickViewModel
+    showRickViewModel: ShowRickViewModel,
+    ticTacRickViewModel: TicTacRickViewModel
 ) {
     val navController = rememberNavController()
 
@@ -93,12 +99,12 @@ fun AppNavigation(
                     selected = chosenScreen == 3,
                     onClick = {
                         chosenScreen = 3
-                        navController.navigate(CreateRick)},
+                        navController.navigate(TicTacRick)},
                     icon = {
                         Icon(imageVector =
                         if (chosenScreen == 3)Icons.Filled.Home else Icons.Outlined.Home, contentDescription = null)
                     },
-                    label = { Text("TODO") }
+                    label = { Text("TicTac Rick") }
                 )
             }
         }
@@ -116,6 +122,9 @@ fun AppNavigation(
                 }
                 composable<CreateRick> {
                     CreateRickScreen(createRickViewModel)
+                }
+                composable<TicTacRick> {
+                    TicTacRickScreen(ticTacRickViewModel)
                 }
 
             }

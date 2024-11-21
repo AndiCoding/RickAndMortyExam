@@ -10,6 +10,7 @@ import com.example.rickandmortyexam.screens.api_rick.ApiRickViewModel
 import com.example.rickandmortyexam.navigation.AppNavigation
 import com.example.rickandmortyexam.screens.create_rick.CreateRickViewModel
 import com.example.rickandmortyexam.screens.show_rick.ShowRickViewModel
+import com.example.rickandmortyexam.screens.tictac_rick.TicTacRickViewModel
 import com.example.rickandmortyexam.ui.theme.RickAndMortyExamTheme
 
 
@@ -19,6 +20,7 @@ class MainActivity : ComponentActivity() {
     private val apiRickViewModel by viewModels<ApiRickViewModel>()
     private val createRickViewModel by viewModels<CreateRickViewModel>()
     private val showRickViewModel by viewModels<ShowRickViewModel>()
+    private val ticTacRickViewModel by viewModels<TicTacRickViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RickAndMortyExamTheme {
-                AppNavigation(apiRickViewModel,createRickViewModel,showRickViewModel)
+                AppNavigation(apiRickViewModel,createRickViewModel,showRickViewModel, ticTacRickViewModel)
             }
             }
         }
