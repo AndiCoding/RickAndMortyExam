@@ -90,18 +90,6 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
                 onValueChange = {createRickViewModel.updateCharacterField("species", it) },
                 label = { Text("Species") }
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            TextField(
-                value = createdCharacterScreen.type,
-                onValueChange = { createRickViewModel.updateCharacterField("type", it) },
-                label = { Text("Type") }
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            TextField(
-                value = createdCharacterScreen.gender,
-                onValueChange = { createRickViewModel.updateCharacterField("gender", it) },
-                label = { Text("Gender") }
-            )
 
         }
 

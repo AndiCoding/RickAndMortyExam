@@ -7,8 +7,8 @@ import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 import java.sql.SQLException
 
 object CharacterDatabaseRepository {
-    private lateinit var _characterDatabase: CharacterDatabase // variable que alamacena los datos en la database
-    private val _characterDao by lazy { _characterDatabase.characterDao()}//recogemos las operaciones del dao y las almacenamos en una variable
+    private lateinit var _characterDatabase: CharacterDatabase
+    private val _characterDao by lazy { _characterDatabase.characterDao()}
 
 
     //Initialize the database
@@ -33,7 +33,6 @@ object CharacterDatabaseRepository {
     }
     }
 
-
     // insert a new character, returns the id of the
     // new character, or -1 if there was an error
     // uncomment the throw SQLException() line to test the error handling in the view
@@ -50,4 +49,6 @@ object CharacterDatabaseRepository {
             -1L
         }
     }
+
+
 }

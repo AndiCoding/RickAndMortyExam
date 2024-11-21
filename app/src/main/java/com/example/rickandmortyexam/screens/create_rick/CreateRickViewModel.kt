@@ -26,8 +26,6 @@ class CreateRickViewModel: ViewModel() {
             "name" -> createdCharacter.value.copy(name = value)
             "status" -> createdCharacter.value.copy(status = value)
             "species" -> createdCharacter.value.copy(species = value)
-            "type" -> createdCharacter.value.copy(type = value)
-            "gender" -> createdCharacter.value.copy(gender = value)
             else -> createdCharacter.value
         }
     }
@@ -42,6 +40,9 @@ class CreateRickViewModel: ViewModel() {
             } else {
                 _message.value = "Error inserting character"
             }
+
+            // updates the view once the character has been inserted
+            CharacterDatabaseRepository.getDatabaseCharacters()
         }
     }
 

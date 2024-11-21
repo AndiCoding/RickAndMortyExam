@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,6 +26,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+
+// Reusable Dropdown component. It takes a list of options
+// and a callback function to handle the selected option.
+// The selected option is displayed in the dropdown.
+
 @Composable
 fun DropDown(
     selectedOption : String,
@@ -31,7 +38,6 @@ fun DropDown(
     onOptionSelected: (String) -> Unit,
 ) {
     var expandedMenu by remember { mutableStateOf(false) }
-
 
     Box(
         modifier = Modifier
@@ -52,7 +58,7 @@ fun DropDown(
 
         ) {
             Text(selectedOption.ifEmpty { "Select options" })
-
+            Icon(Icons.Default.ArrowDropDown, contentDescription = "Dropdown Arrow")
             DropdownMenu(
                 expanded = expandedMenu,
                 onDismissRequest = { expandedMenu = false }

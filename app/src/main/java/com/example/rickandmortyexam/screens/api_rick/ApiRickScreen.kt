@@ -53,8 +53,10 @@ fun ApiRickScreen(apiRickViewModel: ApiRickViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(24.dp))
-            // converting stateflow into a state that can be used in the textfield
-            // updating the stateflow in viewmodel when the textfield value changes
+            // converting stateflow into a state that can be used in the textField
+            // updating the stateflow in viewmodel when the textField value changes
+
+
             TextField(
                 value = apiRickViewModel.nameText.collectAsState().value,
                 onValueChange = { apiRickViewModel.setNameText(it) },
