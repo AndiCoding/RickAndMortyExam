@@ -33,6 +33,8 @@ class MainActivity : ComponentActivity() {
                 AppNavigation(apiRickViewModel,createRickViewModel,showRickViewModel, ticTacRickViewModel)
             }
             }
+
         }
+
     }
 

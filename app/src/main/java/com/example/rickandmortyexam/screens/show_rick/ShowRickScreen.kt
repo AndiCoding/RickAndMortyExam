@@ -2,6 +2,7 @@ package com.example.rickandmortyexam.screens.show_rick
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
@@ -39,26 +39,25 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     )
     {
         Text("Show Rick Screen", style = Typography.headlineLarge)
-<<<<<<< Updated upstream
 
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
-            contentAlignment = Alignment.Center
-=======
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween, // Distribució
-            verticalAlignment = Alignment.CenterVertically // Alineación vertical
->>>>>>> Stashed changes
+            contentAlignment = Alignment.TopStart
         ) {
-            Button(onClick = {
-                expandedMenu = true
-            }) {
-                Text("Select an option")
-            }
+
+            Text(
+                text = "Select an option",
+                style = Typography.headlineSmall,
+                modifier = Modifier
+                    .padding(10.dp)
+                    .border(1.dp, Color.Black)
+                    .background(Color.Transparent)
+                    .clickable { expandedMenu = true }
+            )
+
             DropdownMenu(
                 expanded = expandedMenu,
                 onDismissRequest = { expandedMenu = false }
@@ -77,21 +76,6 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                     )
                 }
             }
-<<<<<<< Updated upstream
-=======
-            Button(onClick = {
-                showRickViewModel.showDeadCharacters()
-            }) {
-                Text("Show dead")
-            }
-
-        Button(onClick = {
-
-            showRickViewModel.setCharacter()
-        }) {
-            Text("Get all characters")
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         }
 
         LazyColumn(
