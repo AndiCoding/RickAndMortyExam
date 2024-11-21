@@ -73,7 +73,7 @@ fun ApiRickScreen(apiRickViewModel: ApiRickViewModel) {
                 }
                 Spacer(modifier = Modifier.width(24.dp))
                 Button(onClick = { apiRickViewModel.resetCharacters() }) {
-                    Text("Clear")
+                    Text("Reset")
                 }
 
             }
