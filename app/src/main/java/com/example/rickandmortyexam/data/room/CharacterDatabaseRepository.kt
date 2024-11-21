@@ -50,5 +50,13 @@ object CharacterDatabaseRepository {
         }
     }
 
-
+    suspend fun deleteAllCharacters() {
+        try {
+            _characterDao.deleteAllCharacters()
+        } catch (e: SQLException){
+            Log.e("Database Error", e.toString())
+        } catch (e: Exception){
+            Log.e("Unknown Error", e.toString())
+        }
+    }
 }

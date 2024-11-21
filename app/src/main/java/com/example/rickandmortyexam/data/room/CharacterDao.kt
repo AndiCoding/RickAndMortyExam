@@ -14,5 +14,8 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: RoomRMCharacter): Long // returns the id of the inserted character
 
+    @Query("DELETE FROM character_table")
+    suspend fun deleteAllCharacters()
+
 }
 
