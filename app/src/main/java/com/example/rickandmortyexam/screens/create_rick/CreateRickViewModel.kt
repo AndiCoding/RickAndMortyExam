@@ -32,15 +32,23 @@ class CreateRickViewModel: ViewModel() {
 
      fun insertCharacter() {
         viewModelScope.launch(Dispatchers.IO) {
-            val newCharId = CharacterDatabaseRepository.insertCharacter(createdCharacter.value)
-            if (newCharId != -1L) {
-                createdCharacter.value = RoomRMCharacter()
-                _message.value = "Character created successfully!"
+            if(createdCharacter.value.name.isEmpty() || createdCharacter.value.status.isEmpty() || createdCharacter.value.species.isEmpty()) {
+                _message.value = "Please fill in all fields"
             } else {
-                _message.value = "Error inserting character"
+                val newCharId = CharacterDatabaseRepository.insertCharacter(createdCharacter.value)
+
+                if (newCharId != -1L) {
+                    createdCharacter.value = RoomRMCharacter()
+                    _message.value = "Character created successfully!"
+                } else {
+                    _message.value = "Error inserting character"
+                }
+
+                // updates the view once the character has been inserted
             }
 
-            // updates the view once the character has been inserted
+
+
             CharacterDatabaseRepository.getDatabaseCharacters()
         }
     }
