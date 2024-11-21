@@ -31,6 +31,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
         verticalArrangement = Arrangement.SpaceAround,
     )
     {
+<<<<<<< Updated upstream
         Text("Show Rick Screen", style = Typography.headlineLarge)
         Row(
             modifier = Modifier.fillMaxWidth().padding(10.dp),
@@ -53,6 +54,13 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                 Text("Show dead")
             }
 
+=======
+        Button(onClick = {
+
+            showRickViewModel.setCharacter()
+        }) {
+            Text("Get all characters")
+>>>>>>> Stashed changes
         }
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
