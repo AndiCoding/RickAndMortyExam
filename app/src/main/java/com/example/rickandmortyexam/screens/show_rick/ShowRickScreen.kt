@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -42,10 +43,9 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
         ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround,
-    )
-    {
+        )
+        {
         Text("Show Rick Screen", style = Typography.headlineLarge)
-<<<<<<< Updated upstream
 
 
         Box(
@@ -53,86 +53,83 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                 .fillMaxWidth()
                 .padding(10.dp),
             contentAlignment = Alignment.Center
-=======
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween, // Distribució
-            verticalAlignment = Alignment.CenterVertically // Alineación vertical
->>>>>>> Stashed changes
         ) {
-            Button(onClick = {
-                expandedMenu = true
-            }) {
-                Text("Select an option")
-            }
-            DropdownMenu(
-                expanded = expandedMenu,
-                onDismissRequest = { expandedMenu = false }
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween, // Distribució
+                verticalAlignment = Alignment.CenterVertically // Alineación vertical
+
             ) {
-                options.forEach { option ->
-                    DropdownMenuItem(
-                        onClick = {
-                            expandedMenu = false
-                            when (option) {
-                                "Reload all characters" -> showRickViewModel.getCharacter()
-                                "Show alive characters" -> showRickViewModel.showAliveCharacters()
-                                "Show dead characters" -> showRickViewModel.showDeadCharacters()
-                            }
-                        },
-                        text = { Text(option) }
-                    )
+                Button(onClick = {
+                    expandedMenu = true
+                }) {
+                    Text("Select an option")
                 }
-            }
-<<<<<<< Updated upstream
-=======
-            Button(onClick = {
-                showRickViewModel.showDeadCharacters()
-            }) {
-                Text("Show dead")
-            }
-
-        Button(onClick = {
-
-            showRickViewModel.setCharacter()
-        }) {
-            Text("Get all characters")
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-        }
-
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(characters.value) { character ->
-                val boxColor = if (character.status.equals("Alive", ignoreCase = true)) {
-                    Color.Green
-                } else {
-                    Color.Red
-                }
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                        .border(1.dp, Color.LightGray)
-                        .background(boxColor)
+                DropdownMenu(
+                    expanded = expandedMenu,
+                    onDismissRequest = { expandedMenu = false }
                 ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        Text(text = "Name: ${character.name}", style = Typography.headlineSmall)
-                        Text(text = "Status: ${character.status}", style = Typography.headlineSmall)
-                        Text(
-                            text = "Species: ${character.species}",
-                            style = Typography.headlineSmall
+                    options.forEach { option ->
+                        DropdownMenuItem(
+                            onClick = {
+                                expandedMenu = false
+                                when (option) {
+                                    "Reload all characters" -> showRickViewModel.getCharacter()
+                                    "Show alive characters" -> showRickViewModel.showAliveCharacters()
+                                    "Show dead characters" -> showRickViewModel.showDeadCharacters()
+                                }
+                            },
+                            text = { Text(option) }
                         )
-                        Text(text = "Type: ${character.type}", style = Typography.headlineSmall)
-                        Text(text = "Gender: ${character.gender}", style = Typography.headlineSmall)
                     }
-
                 }
+
             }
         }
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                items(characters.value) { character ->
+                    val boxColor = if (character.status.equals("Alive", ignoreCase = true)) {
+                        Color.Green
+                    } else {
+                        Color.Red
+                    }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                            .border(1.dp, Color.LightGray)
+                            .background(boxColor)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp)
+                        ) {
+                            Text(
+                                text = "Name: ${character.name}",
+                                style = Typography.headlineSmall
+                            )
+                            Text(
+                                text = "Status: ${character.status}",
+                                style = Typography.headlineSmall
+                            )
+                            Text(
+                                text = "Species: ${character.species}",
+                                style = Typography.headlineSmall
+                            )
+                            Text(
+                                text = "Type: ${character.type}",
+                                style = Typography.headlineSmall
+                            )
+                            Text(
+                                text = "Gender: ${character.gender}",
+                                style = Typography.headlineSmall
+                            )
+                        }
+
+                    }
+                }
+            }
     }
 }
