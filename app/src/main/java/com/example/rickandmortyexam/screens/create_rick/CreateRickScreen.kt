@@ -59,11 +59,17 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
     )
     {
         Text("Create Character", style = Typography.headlineLarge)
-        Column {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
             TextField(
                 value = createdCharacterScreen.name,
                 onValueChange = { createRickViewModel.updateCharacterField("name", it) },
                 label = { Text("Name") }
+                
             )
             Spacer(modifier = Modifier.height(8.dp))
             Row {
@@ -79,6 +85,7 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
                             "Unknown" -> createRickViewModel.updateCharacterField("status", "Unknown")
 
                         }
+
                     }
                 )
             }
