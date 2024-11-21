@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 
@@ -18,7 +19,8 @@ fun PrevNextButtons(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        Arrangement.SpaceEvenly
+        Arrangement.SpaceEvenly,
+        Alignment.CenterVertically
     ) {
         Button(
             modifier = Modifier.weight(1f),

@@ -1,5 +1,5 @@
 
-package com.example.rickandmortyexam.screens.api_rick.utils
+package com.example.rickandmortyexam.utils
 
 import com.example.rickandmortyexam.data.data_classes.Info
 import kotlinx.coroutines.flow.MutableStateFlow

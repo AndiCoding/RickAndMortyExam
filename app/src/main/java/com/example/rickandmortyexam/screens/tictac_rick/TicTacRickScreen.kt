@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -29,34 +30,42 @@ fun TicTacRickScreen(viewModel: TicTacRickViewModel) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text("Tic-Tac Rick", style = Typography.headlineLarge)
-        Text("Current Player: $currentPlayer", style = Typography.bodyLarge)
 
-        for (row in 0 until 3) {
-            Row {
-                for (col in 0 until 3) {
-                    val player = board[row][col]
-                    Box(
-                        modifier = Modifier
-                            .size(100.dp)
-                            .border(1.dp, Color.Black)
-                            .clickable { viewModel.makeMove(row, col) },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        if (player == "Rick") {
-                            Image(painter = painterResource(id = R.drawable.rick_face), contentDescription = "Rick")
-                        } else if (player == "Morty") {
-                            Image(painter = painterResource(id = R.drawable.morty_face), contentDescription = "Morty")
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("Current Player: $currentPlayer", style = Typography.bodyLarge)
+            for (row in 0 until 3) {
+                Row {
+                    for (col in 0 until 3) {
+                        val player = board[row][col]
+                        Box(
+                            modifier = Modifier
+                                .size(100.dp)
+                                .border(1.dp, Color.Black)
+                                .clickable { viewModel.makeMove(row, col) },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            if (player == "Rick") {
+                                Image(painter = painterResource(id = R.drawable.rick_face), contentDescription = "Rick")
+                            } else if (player == "Morty") {
+                                Image(painter = painterResource(id = R.drawable.morty_face), contentDescription = "Morty")
+                            }
                         }
                     }
                 }
             }
-        }
+            Button(onClick = { viewModel.resetGame() }) {
+                Text("Reset Game")
+            }
 
-        Button(onClick = { viewModel.resetGame() }) {
-            Text("Reset Game")
         }
+        Spacer(modifier = Modifier.size(64.dp))
+
+
+
+
+
     }
 }

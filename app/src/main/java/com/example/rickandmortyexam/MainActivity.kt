@@ -14,7 +14,6 @@ import com.example.rickandmortyexam.screens.tictac_rick.TicTacRickViewModel
 import com.example.rickandmortyexam.ui.theme.RickAndMortyExamTheme
 
 
-
 class MainActivity : ComponentActivity() {
 
     private val apiRickViewModel by viewModels<ApiRickViewModel>()

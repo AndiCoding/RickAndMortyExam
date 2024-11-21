@@ -1,4 +1,4 @@
-package com.example.rickandmortyexam.screens.api_rick.utils
+package com.example.rickandmortyexam.utils
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

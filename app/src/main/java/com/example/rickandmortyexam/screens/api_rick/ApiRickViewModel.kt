@@ -5,11 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.rickandmortyexam.data.data_classes.ApiRMCharacter
 import com.example.rickandmortyexam.data.data_classes.Info
 import com.example.rickandmortyexam.data.services.CharacterRepository
-import com.example.rickandmortyexam.screens.api_rick.utils.PageNumber
-import com.example.rickandmortyexam.screens.api_rick.utils.ResultStringBuilder
-import com.example.rickandmortyexam.screens.api_rick.utils.TextFieldState
-import com.example.rickandmortyexam.screens.api_rick.utils.TextFieldState.nameText
-import com.example.rickandmortyexam.screens.api_rick.utils.TextFieldState.statusText
+import com.example.rickandmortyexam.utils.PageNumber
+import com.example.rickandmortyexam.utils.ResultStringBuilder
+import com.example.rickandmortyexam.utils.TextFieldState
+import com.example.rickandmortyexam.utils.TextFieldState.nameText
+import com.example.rickandmortyexam.utils.TextFieldState.statusText
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -40,6 +40,14 @@ class ApiRickViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             getCharacters()
+        }
+    }
+
+    fun resetCharacters() {
+        viewModelScope.launch {
+            getCharacters()
+            setNameText("")
+            setNameText("")
         }
     }
 
@@ -82,5 +90,8 @@ class ApiRickViewModel : ViewModel() {
             getCharacters(url)
         }
     }
+
+
+
 
 }

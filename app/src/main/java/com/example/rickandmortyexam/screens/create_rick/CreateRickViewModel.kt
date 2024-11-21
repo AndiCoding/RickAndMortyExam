@@ -1,11 +1,11 @@
 package com.example.rickandmortyexam.screens.create_rick
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 import com.example.rickandmortyexam.data.room.CharacterDatabaseRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import androidx.lifecycle.viewModelScope
+import com.example.rickandmortyexam.utils.PossibleStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -29,13 +29,10 @@ class CreateRickViewModel: ViewModel() {
         }
     }
 
-
-    // function that empties the createdCharacter field if successful insert
      fun insertCharacter() {
         viewModelScope.launch(Dispatchers.IO) {
             val newCharId = CharacterDatabaseRepository.insertCharacter(createdCharacter.value)
             if (newCharId != -1L) {
-                //createdCharacter.value = createdCharacter.value.copy(id = newCharId.toInt())
                 createdCharacter.value = RoomRMCharacter()
                 _message.value = "Character created successfully!"
 
