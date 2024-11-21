@@ -11,13 +11,27 @@ import kotlinx.coroutines.launch
 
 class ShowRickViewModel: ViewModel() {
 
-    private val _characters = MutableStateFlow<List<RoomRMCharacter>>(emptyList()) //can be modified
+    private val _characters = MutableStateFlow<List<RoomRMCharacter>>(emptyList())
     val character = _characters.asStateFlow()
+
+    private var allCharacters = listOf<RoomRMCharacter>()
 
 
     fun getCharacter(){
         viewModelScope.launch (Dispatchers.IO) {
+            allCharacters = CharacterDatabaseRepository.getDatabaseCharacters()
             _characters.value = CharacterDatabaseRepository.getDatabaseCharacters()
+
+        }
+    }
+    fun showAliveCharacters(){
+        viewModelScope.launch (Dispatchers.IO) {
+            _characters.value = allCharacters.filter { it.status.equals("Alive", ignoreCase = true) }
+        }
+    }
+    fun showDeadCharacters(){
+        viewModelScope.launch (Dispatchers.IO) {
+            _characters.value = allCharacters.filter { it.status.equals("Dead", ignoreCase = true) }
         }
     }
 }
