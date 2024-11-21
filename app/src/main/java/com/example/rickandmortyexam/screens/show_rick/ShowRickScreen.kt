@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,13 +25,9 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     val characters = showRickViewModel.character.collectAsState() //observe the characters
     val options = listOf("Show all characters", "Show alive characters", "Show dead characters")
 
-
-    DisposableEffect(Unit) {
-        onDispose {
-            showRickViewModel.getCharacter()
-        }
+    LaunchedEffect(Unit) {
+        showRickViewModel.getCharacter()
     }
-
 
     Column(
         modifier = Modifier
