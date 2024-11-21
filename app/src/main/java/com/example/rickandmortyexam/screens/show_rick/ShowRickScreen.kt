@@ -31,23 +31,24 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     }
 
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxSize()
             .background(
             Brush.verticalGradient(
                 listOf(Color.Green, Color.Blue))
-        ),
-
+        )
         )
         {
+            Text("Show Rick Screen", style = Typography.headlineLarge)
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
+
         ) {
-            Text("Show Rick Screen", style = Typography.headlineLarge)
+
 
             DropDown(
                 selectedOption = "Select an option",
