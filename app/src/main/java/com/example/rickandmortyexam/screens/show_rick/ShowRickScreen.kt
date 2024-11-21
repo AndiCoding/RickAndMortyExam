@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,9 +32,10 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     )
     {
         Text("Show Rick Screen", style = Typography.headlineLarge)
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween, // Distribución horizontal
+            verticalAlignment = Alignment.CenterVertically // Alineación vertical
         ) {
             Button(onClick = {
                 showRickViewModel.getCharacter()
@@ -43,12 +45,12 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
             Button(onClick = {
                 showRickViewModel.showAliveCharacters()
             }) {
-                Text("Show alive characters")
+                Text("Show alive")
             }
             Button(onClick = {
                 showRickViewModel.showDeadCharacters()
             }) {
-                Text("Show dead characters")
+                Text("Show dead")
             }
 
         }
