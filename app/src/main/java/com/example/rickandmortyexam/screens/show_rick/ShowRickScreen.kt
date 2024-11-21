@@ -25,7 +25,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     {
         Text("Show Rick Screen", style = Typography.headlineLarge)
         Button(onClick = {
-            showRickViewModel.setCharacter()
+            showRickViewModel.getCharacter()
         }) {
             Text("Get all characters")
         }

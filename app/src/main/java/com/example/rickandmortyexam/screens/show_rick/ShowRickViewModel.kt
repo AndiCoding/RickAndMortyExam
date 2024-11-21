@@ -15,7 +15,7 @@ class ShowRickViewModel: ViewModel() {
     val character = _characters.asStateFlow()
 
 
-    fun setCharacter(){
+    fun getCharacter(){
         viewModelScope.launch (Dispatchers.IO) {
             _characters.value = CharacterDatabaseRepository.getDatabaseCharacters()
         }
