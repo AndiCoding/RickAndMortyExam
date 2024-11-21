@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.rickandmortyexam.components.DropDown
 import com.example.rickandmortyexam.ui.theme.Typography
+import com.example.rickandmortyexam.utils.CharacterStatus
 import kotlinx.coroutines.delay
 
 //Screen 3
@@ -33,6 +36,8 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
         createRickViewModel.createdCharacter.collectAsState()
 
     val message by createRickViewModel.message.collectAsState()
+
+    val statusOptions = listOf("Alive", "Dead", "Unknown")
 
     // shows success or error message for 3 seconds
     LaunchedEffect(message) {
@@ -62,11 +67,23 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
                 label = { Text("Name") }
             )
             Spacer(modifier = Modifier.height(8.dp))
-            TextField(
-                value = createdCharacterScreen.status,
-                onValueChange = { createRickViewModel.updateCharacterField("status", it) },
-                label = { Text("Status") }
-            )
+            Row {
+
+                DropDown(
+                    createRickViewModel.getStatusText(),
+                    statusOptions,
+                    onOptionSelected =
+                    { selectedOption ->
+                        when (selectedOption) {
+                            "Alive" -> createRickViewModel.updateCharacterField("status", "Alive")
+                            "Dead" -> createRickViewModel.updateCharacterField("status", "Dead")
+                            "Unknown" -> createRickViewModel.updateCharacterField("status", "Unknown")
+
+                        }
+                    }
+                )
+            }
+
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
                 value = createdCharacterScreen.species,

@@ -16,6 +16,10 @@ class CreateRickViewModel: ViewModel() {
     private val _message = MutableStateFlow<String?>(null)
     val message: StateFlow<String?> get() = _message
 
+    fun getStatusText(): String {
+        return createdCharacter.value.status
+    }
+
 
     fun updateCharacterField(fieldName: String, value: String) {
         createdCharacter.value = when (fieldName) {
