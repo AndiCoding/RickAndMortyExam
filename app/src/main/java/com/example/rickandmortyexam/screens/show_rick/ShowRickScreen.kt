@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.rickandmortyexam.ui.theme.Typography
@@ -26,7 +27,12 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     val characters = showRickViewModel.character.collectAsState() //observe the characters
 
     Column(
-        Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+            Brush.verticalGradient(
+                listOf(Color.Green, Color.Blue))
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround,
     )

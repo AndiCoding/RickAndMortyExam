@@ -5,7 +5,6 @@ import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 import com.example.rickandmortyexam.data.room.CharacterDatabaseRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmortyexam.utils.PossibleStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

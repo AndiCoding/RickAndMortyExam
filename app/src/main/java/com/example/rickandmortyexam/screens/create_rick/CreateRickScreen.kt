@@ -18,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.rickandmortyexam.ui.theme.Typography
@@ -42,7 +43,12 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
     }
 
     Column(
-        Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    listOf(Color.Green, Color.Blue))
+            ),
         Arrangement.SpaceBetween,
         horizontalAlignment =
             Alignment.CenterHorizontally
