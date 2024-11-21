@@ -37,7 +37,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
         Text("Show Rick Screen", style = Typography.headlineLarge)
 
             DropDown(
-                "TODO",
+                "Select an option",
                 options,
                 onOptionSelected =
                     { selectedOption ->
