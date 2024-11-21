@@ -41,20 +41,17 @@ fun DropDown(
     var expandedMenu by remember { mutableStateOf(false) }
 
     Box(
-
         modifier = Modifier
             .clip(RoundedCornerShape(24.dp))
-            .width(200.dp)
-            .padding(top = 10.dp)
+            .fillMaxWidth()
             .border(1.dp, Color.Gray)
             .clickable { expandedMenu = !expandedMenu }
-            .background(Color.White)
-            .padding(horizontal = 12.dp, vertical = 8.dp),
+            .background(Color.White),
         contentAlignment = Alignment.CenterStart
     ) {
         Row(
 
-            modifier = Modifier.fillMaxWidth().padding(10.dp),
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
 
@@ -65,7 +62,8 @@ fun DropDown(
         }
         DropdownMenu(
             expanded = expandedMenu,
-            onDismissRequest = { expandedMenu = false }
+            onDismissRequest = { expandedMenu = false },
+            modifier = Modifier.fillMaxWidth(),
         ) {
             options.forEach { option ->
                 DropdownMenuItem(

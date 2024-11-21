@@ -72,8 +72,20 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
                 value = createdCharacterScreen.name,
                 onValueChange = { createRickViewModel.updateCharacterField("name", it) },
                 label = { Text("Name") },
-                modifier = Modifier.clip(RoundedCornerShape(24.dp)).width(200.dp)
+                modifier = Modifier
+                    .clip(RoundedCornerShape(24.dp))
+                    .fillMaxWidth()
                 
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+            TextField(
+                value = createdCharacterScreen.species,
+                onValueChange = {createRickViewModel.updateCharacterField("species", it) },
+                label = { Text("Species") },
+                modifier = Modifier
+                    .clip(RoundedCornerShape(24.dp))
+                    .fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
             Row {
@@ -94,13 +106,6 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
-            TextField(
-                value = createdCharacterScreen.species,
-                onValueChange = {createRickViewModel.updateCharacterField("species", it) },
-                label = { Text("Species") },
-                modifier = Modifier.clip(RoundedCornerShape(24.dp)).width(200.dp)
-            )
 
         }
 

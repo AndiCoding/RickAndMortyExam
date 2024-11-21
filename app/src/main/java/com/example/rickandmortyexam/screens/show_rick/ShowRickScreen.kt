@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -36,32 +37,39 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
             Brush.verticalGradient(
                 listOf(Color.Green, Color.Blue))
         ),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround,
+
         )
         {
-        Text("Show Rick Screen", style = Typography.headlineLarge)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text("Show Rick Screen", style = Typography.headlineLarge)
 
             DropDown(
                 selectedOption = "Select an option",
                 options = options,
                 onOptionSelected =
-                    { selectedOption ->
-                        when (selectedOption) {
-                            "Show all characters" -> showRickViewModel.getCharacter()
-                            "Show alive characters" -> showRickViewModel.showAliveCharacters()
-                            "Show dead characters" -> showRickViewModel.showDeadCharacters()
-                        }
+                { selectedOption ->
+                    when (selectedOption) {
+                        "Show all characters" -> showRickViewModel.getCharacter()
+                        "Show alive characters" -> showRickViewModel.showAliveCharacters()
+                        "Show dead characters" -> showRickViewModel.showDeadCharacters()
                     }
+                }
             )
 
-                LazyColumn(
+            LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
+            ) {
                 items(characters.value) { character ->
                     CharacterItemDB(character)
                 }
-                }
+            }
+        }
     }
 }
