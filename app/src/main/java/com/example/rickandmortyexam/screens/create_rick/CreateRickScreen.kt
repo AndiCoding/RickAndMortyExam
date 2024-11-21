@@ -24,7 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.rickandmortyexam.components.DropDown
 import com.example.rickandmortyexam.ui.theme.Typography
-import com.example.rickandmortyexam.utils.CharacterStatus
 import kotlinx.coroutines.delay
 
 //Screen 3
@@ -99,6 +98,11 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
             Text("Create Character")
         }
 
+        Button(onClick = {
+            createRickViewModel.deleteAllCharacters()
+        }){
+            Text("Delete All Characters")
+        }
 
     }
     // displays a message if the character was created successfully or not

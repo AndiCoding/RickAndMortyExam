@@ -5,11 +5,12 @@ import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 import com.example.rickandmortyexam.data.room.CharacterDatabaseRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import androidx.lifecycle.viewModelScope
+import com.example.rickandmortyexam.screens.show_rick.ShowRickViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class CreateRickViewModel: ViewModel() {
+class CreateRickViewModel(): ViewModel() {
 
     val createdCharacter = MutableStateFlow(RoomRMCharacter())
 
@@ -37,6 +38,8 @@ class CreateRickViewModel: ViewModel() {
                 createdCharacter.value = RoomRMCharacter()
                 _message.value = "Character created successfully!"
 
+
+
             } else {
                 _message.value = "Error inserting character"
             }
@@ -44,6 +47,15 @@ class CreateRickViewModel: ViewModel() {
             // updates the view once the character has been inserted
             CharacterDatabaseRepository.getDatabaseCharacters()
         }
+    }
+
+    fun deleteAllCharacters() {
+        viewModelScope.launch(Dispatchers.IO) {
+            CharacterDatabaseRepository.deleteAllCharacters()
+
+
+        }
+
     }
 
 
