@@ -50,7 +50,6 @@ fun DropDown(
             .padding(horizontal = 12.dp, vertical = 8.dp),
         contentAlignment = Alignment.CenterStart
     ) {
-
         Row(
             modifier = Modifier.fillMaxWidth().padding(10.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -59,21 +58,21 @@ fun DropDown(
         ) {
             Text(selectedOption.ifEmpty { "Select options" })
             Icon(Icons.Default.ArrowDropDown, contentDescription = "Dropdown Arrow")
-            DropdownMenu(
-                expanded = expandedMenu,
-                onDismissRequest = { expandedMenu = false }
-            ) {
-                options.forEach { option ->
-                    DropdownMenuItem(
-                        onClick = {
-                            expandedMenu = false
-                            onOptionSelected(option)
-                        },
-                        text = { Text(option) }
-                    )
-                }
-            }
 
+        }
+        DropdownMenu(
+            expanded = expandedMenu,
+            onDismissRequest = { expandedMenu = false }
+        ) {
+            options.forEach { option ->
+                DropdownMenuItem(
+                    onClick = {
+                        expandedMenu = false
+                        onOptionSelected(option)
+                    },
+                    text = { Text(option) }
+                )
+            }
         }
     }
 
