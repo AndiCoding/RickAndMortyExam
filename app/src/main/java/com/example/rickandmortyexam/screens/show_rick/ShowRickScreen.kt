@@ -47,6 +47,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     {
         Text("Show Rick Screen", style = Typography.headlineLarge)
 
+        
 
             Box(
                 modifier = Modifier
