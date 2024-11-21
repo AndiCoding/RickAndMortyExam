@@ -37,9 +37,6 @@ class CreateRickViewModel(): ViewModel() {
             if (newCharId != -1L) {
                 createdCharacter.value = RoomRMCharacter()
                 _message.value = "Character created successfully!"
-
-
-
             } else {
                 _message.value = "Error inserting character"
             }
@@ -52,8 +49,7 @@ class CreateRickViewModel(): ViewModel() {
     fun deleteAllCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
             CharacterDatabaseRepository.deleteAllCharacters()
-
-
+            _message.value = "All characters deleted successfully!"
         }
 
     }
