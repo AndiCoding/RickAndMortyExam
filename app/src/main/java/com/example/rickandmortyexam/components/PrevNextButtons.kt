@@ -13,8 +13,8 @@ import androidx.compose.ui.graphics.RectangleShape
 @Composable
 fun PrevNextButtons(
     onPrevClick: () -> Unit,
-    onNextClick: () -> Unit
-
+    onNextClick: () -> Unit,
+    pageNumber: String
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -27,6 +27,8 @@ fun PrevNextButtons(
         ) {
             Text("Prev")
         }
+        Spacer(modifier = Modifier.weight(0.1f))
+        Text(pageNumber)
         Spacer(modifier = Modifier.weight(0.1f))
         Button(
             modifier = Modifier.weight(1f),
