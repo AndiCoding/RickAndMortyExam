@@ -11,8 +11,10 @@ import kotlinx.coroutines.launch
 
 class CreateRickViewModel: ViewModel() {
 
+    // current character being created
     val createdCharacter = MutableStateFlow(RoomRMCharacter())
 
+    // Message that can be displayed to the user
     private val _message = MutableStateFlow<String?>(null)
     val message: StateFlow<String?> get() = _message
 
@@ -20,7 +22,7 @@ class CreateRickViewModel: ViewModel() {
         return createdCharacter.value.status
     }
 
-
+    // handles user event for each input field
     fun updateCharacterField(fieldName: String, value: String) {
         createdCharacter.value = when (fieldName) {
             "name" -> createdCharacter.value.copy(name = value)
@@ -30,6 +32,9 @@ class CreateRickViewModel: ViewModel() {
         }
     }
 
+    // Inserting character into the database,
+    // if all fields are filled in and the database returns
+    // a positive number (the id of the new character in the DB)
      fun insertCharacter() {
         viewModelScope.launch(Dispatchers.IO) {
             if(createdCharacter.value.name.isEmpty() || createdCharacter.value.status.isEmpty() || createdCharacter.value.species.isEmpty()) {
@@ -43,11 +48,7 @@ class CreateRickViewModel: ViewModel() {
                 } else {
                     _message.value = "Error inserting character"
                 }
-
-                // updates the view once the character has been inserted
             }
-
-
 
             CharacterDatabaseRepository.getDatabaseCharacters()
         }

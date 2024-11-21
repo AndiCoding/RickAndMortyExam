@@ -1,11 +1,13 @@
 package com.example.rickandmortyexam.components
 
+import androidx.compose.animation.expandVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -40,41 +42,48 @@ fun DropDown(
 ) {
     var expandedMenu by remember { mutableStateOf(false) }
 
-    Box(
-        modifier = Modifier
-            .clip(RoundedCornerShape(24.dp))
-            .fillMaxWidth()
-            .border(1.dp, Color.Gray)
-            .clickable { expandedMenu = !expandedMenu }
-            .background(Color.White),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        Row(
-
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(24.dp))
+                .fillMaxWidth()
+                .border(1.dp, Color.Gray)
+                .clickable { expandedMenu = !expandedMenu }
+                .background(Color.White),
+            contentAlignment = Alignment.CenterStart
         ) {
-            Text(selectedOption.ifEmpty { "Select options" })
-            Icon(Icons.Default.ArrowDropDown, contentDescription = "Dropdown Arrow")
+            Row(
 
-        }
-        DropdownMenu(
-            expanded = expandedMenu,
-            onDismissRequest = { expandedMenu = false },
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            options.forEach { option ->
-                DropdownMenuItem(
-                    onClick = {
-                        expandedMenu = false
-                        onOptionSelected(option)
-                    },
-                    text = { Text(option) }
-                )
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+
+            ) {
+                Text(selectedOption.ifEmpty { "Select options" })
+                Icon(Icons.Default.ArrowDropDown, contentDescription = "Dropdown Arrow")
+
             }
+
+            DropdownMenu(
+                expanded = expandedMenu,
+                onDismissRequest = { expandedMenu = false },
+                modifier = Modifier
+                    .width(300.dp),
+
+            ) {
+                options.forEach { option ->
+                    DropdownMenuItem(
+                        onClick = {
+                            expandedMenu = false
+                            onOptionSelected(option)
+                        },
+                        text = { Text(option) }
+                    )
+                }
+            }
+
         }
-    }
+
+
+
 
 }

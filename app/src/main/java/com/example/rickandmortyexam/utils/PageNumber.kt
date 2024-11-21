@@ -5,6 +5,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+// Component Dispalys the current page
+// number and the total number of pages
+
 object PageNumber {
     private val _pageNumber = MutableStateFlow("")
     val pageNumber: StateFlow<String> = _pageNumber.asStateFlow()
@@ -14,9 +17,7 @@ object PageNumber {
     ){
         val totalPages = pageInfo.value?.pages
         val nextPage = pageInfo.value?.next
-        // extracts the "page=17" (i.e.) from  next url.
-        // Sets the current page number, if the next page is null,
-        // then the current page is the last page
+
 
         val regex = "page=(\\d+)".toRegex()
         val matchResult = regex.find(nextPage.toString())

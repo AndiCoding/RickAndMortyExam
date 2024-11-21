@@ -14,6 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.example.rickandmortyexam.data.data_classes.RoomRMCharacter
 import com.example.rickandmortyexam.ui.theme.Typography
 
+// component that renders a single Character
+// from the Room database
+
 @Composable
 fun CharacterItemDB(character: RoomRMCharacter) {
     val characterStatus = character.status

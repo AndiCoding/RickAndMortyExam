@@ -11,6 +11,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 
+
+// Reusable component that renders two buttons
+// for navigating to the previous and next pages.
 @Composable
 fun PrevNextButtons(
     onPrevClick: () -> Unit,

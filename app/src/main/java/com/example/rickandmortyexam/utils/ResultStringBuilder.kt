@@ -6,6 +6,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+// Component that tells user how many
+// characters are in the search result
+
 object ResultStringBuilder {
     private val _searchResult = MutableStateFlow("")
     val searchResult: StateFlow<String> = _searchResult.asStateFlow()

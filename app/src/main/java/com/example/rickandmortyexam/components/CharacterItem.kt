@@ -13,7 +13,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.rickandmortyexam.data.data_classes.ApiRMCharacter
 
-
+// component that renders a single Character
+// from the API
 
 @Composable
 fun CharacterItem(character: ApiRMCharacter) {

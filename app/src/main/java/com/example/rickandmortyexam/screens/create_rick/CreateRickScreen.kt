@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -37,7 +36,9 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
     val createdCharacterScreen by
         createRickViewModel.createdCharacter.collectAsState()
 
+
     val message by createRickViewModel.message.collectAsState()
+
 
     val statusOptions = listOf("Alive", "Dead", "Unknown")
 
@@ -122,14 +123,19 @@ fun CreateRickScreen(createRickViewModel: CreateRickViewModel) {
         }
 
     }
-    // displays a message if the character was created successfully or not
+    // displays a message if the character was created successfully or not,
+    // and fields are not filled in
     message?.let {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .height(50.dp)
                 .fillMaxWidth()
-                .background(if (it.contains("successfully")) Color(0xFF4BB543) else Color(0xFFFF3333))
+                .background(if (
+                    it.contains("successfully"))
+                    Color(0xFF4BB543)
+                    else Color(0xFFFF3333)
+                )
                 .padding(16.dp)
         ) {
             Text(it, color = Color.White)

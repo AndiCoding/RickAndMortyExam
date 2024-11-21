@@ -20,9 +20,13 @@ class ApiRickViewModel : ViewModel() {
 
     val characters = MutableStateFlow<List<ApiRMCharacter>>(emptyList())
 
+    // Info holds metadata from current page
+    // allows to navigate to next and previous pages
     private val _pageInfo = MutableStateFlow<Info?>(null)
     private val pageInfo = _pageInfo.asStateFlow()
 
+    // Components, Seperation of concerns,
+    // makes the code more readable
     val searchResult = ResultStringBuilder.searchResult
     val pageNumber = PageNumber.pageNumber
     val nameText = TextFieldState.nameText
@@ -37,12 +41,15 @@ class ApiRickViewModel : ViewModel() {
     }
 
 
+    // runs when the ViewModel is created
     init {
         viewModelScope.launch {
             getCharacters()
         }
     }
 
+
+    // Method to quickly reset the characters and fields
     fun resetCharacters() {
         viewModelScope.launch {
             getCharacters()
@@ -50,6 +57,8 @@ class ApiRickViewModel : ViewModel() {
             setNameText("")
         }
     }
+
+
 
     fun nextCharacters() {
         viewModelScope.launch {
@@ -64,6 +73,7 @@ class ApiRickViewModel : ViewModel() {
         }
     }
 
+    // get characters from the API
     private suspend fun getCharacters(url: String = "character") {
         val (characters, info) = _characterRepository.getCharacters(url)
         this.characters.value = characters
@@ -74,6 +84,7 @@ class ApiRickViewModel : ViewModel() {
 
 
     // function called when user presses the search button
+
     fun searchCharacters() {
         var url = "character/?"
         val name = nameText.value

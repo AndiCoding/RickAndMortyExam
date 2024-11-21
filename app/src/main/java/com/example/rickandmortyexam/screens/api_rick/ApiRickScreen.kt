@@ -27,6 +27,7 @@ import com.example.rickandmortyexam.ui.theme.Typography
 
 @Composable
 fun ApiRickScreen(apiRickViewModel: ApiRickViewModel) {
+
     val characters = apiRickViewModel.characters.collectAsState()
 
 
@@ -53,9 +54,6 @@ fun ApiRickScreen(apiRickViewModel: ApiRickViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(24.dp))
-            // converting stateflow into a state that can be used in the textField
-            // updating the stateflow in viewmodel when the textField value changes
-
 
             TextField(
                 value = apiRickViewModel.nameText.collectAsState().value,

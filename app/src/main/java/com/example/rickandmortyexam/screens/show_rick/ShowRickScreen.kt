@@ -26,6 +26,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     val characters = showRickViewModel.character.collectAsState() //observe the characters
     val options = listOf("Show all characters", "Show alive characters", "Show dead characters")
 
+
     LaunchedEffect(Unit) {
         showRickViewModel.getCharacter()
     }
@@ -49,7 +50,8 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
 
         ) {
 
-
+                // Using our DropDown component and passing the options
+                // and the callback function to handle the selected option.
             DropDown(
                 selectedOption = "Select an option",
                 options = options,
@@ -62,6 +64,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                     }
                 }
             )
+
 
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
