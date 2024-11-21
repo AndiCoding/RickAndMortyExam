@@ -5,16 +5,21 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -25,6 +30,8 @@ import com.example.rickandmortyexam.ui.theme.Typography
 @Composable
 fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     val characters = showRickViewModel.character.collectAsState() //observe the characters
+    var expandedMenu by remember { mutableStateOf(false) }
+    val options = listOf("Reload all characters", "Show alive characters", "Show dead characters")
 
     Column(
         modifier = Modifier
@@ -37,31 +44,62 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
         verticalArrangement = Arrangement.SpaceAround,
     )
     {
-
         Text("Show Rick Screen", style = Typography.headlineLarge)
+<<<<<<< Updated upstream
+
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            contentAlignment = Alignment.Center
+=======
         Row(
             modifier = Modifier.fillMaxWidth().padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween, // Distribución horizontal
+            horizontalArrangement = Arrangement.SpaceBetween, // Distribució
             verticalAlignment = Alignment.CenterVertically // Alineación vertical
+>>>>>>> Stashed changes
         ) {
             Button(onClick = {
-                showRickViewModel.getCharacter()
+                expandedMenu = true
             }) {
-                Text("Reload all characters")
+                Text("Select an option")
             }
-            Button(onClick = {
-                showRickViewModel.showAliveCharacters()
-            }) {
-                Text("Show alive")
+            DropdownMenu(
+                expanded = expandedMenu,
+                onDismissRequest = { expandedMenu = false }
+            ) {
+                options.forEach { option ->
+                    DropdownMenuItem(
+                        onClick = {
+                            expandedMenu = false
+                            when (option) {
+                                "Reload all characters" -> showRickViewModel.getCharacter()
+                                "Show alive characters" -> showRickViewModel.showAliveCharacters()
+                                "Show dead characters" -> showRickViewModel.showDeadCharacters()
+                            }
+                        },
+                        text = { Text(option) }
+                    )
+                }
             }
+<<<<<<< Updated upstream
+=======
             Button(onClick = {
                 showRickViewModel.showDeadCharacters()
             }) {
                 Text("Show dead")
             }
 
+        Button(onClick = {
 
+            showRickViewModel.setCharacter()
+        }) {
+            Text("Get all characters")
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         }
+
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -79,8 +117,6 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                         .padding(16.dp)
                         .border(1.dp, Color.LightGray)
                         .background(boxColor)
-
-
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp)
