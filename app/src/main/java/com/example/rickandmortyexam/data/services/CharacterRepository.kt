@@ -15,7 +15,6 @@ object CharacterRepository {
 
     private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
-
     private val _okHttpClient = OkHttpClient
         .Builder()
         .addInterceptor(
@@ -42,7 +41,6 @@ object CharacterRepository {
 
     suspend fun getCharacters(url: String): Pair<List<ApiRMCharacter>, Info?> {
         val defaultResponse = Pair(emptyList<ApiRMCharacter>(), null)
-
         try {
             val response = _characterService.getCharacters(url)
 
