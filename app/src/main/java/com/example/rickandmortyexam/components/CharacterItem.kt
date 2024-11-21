@@ -19,12 +19,25 @@ import com.example.rickandmortyexam.data.data_classes.ApiRMCharacter
 fun CharacterItem(character: ApiRMCharacter) {
     Box(modifier = Modifier.fillMaxWidth().border(1.dp, Color.Black), contentAlignment = Alignment.Center) {
         Column {
-            Text(text = "Id: " + character.id.toString())
-            Text(text = "Name: " + character.name ?: "Unknown")
-            AsyncImage(
-                model = character.image,
-                contentDescription = character.name ?: "Unknown"
-            )
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Column {
+                    Text(text = "Id: " + character.id.toString())
+                    Text(text = "Name: " + character.name ?: "Unknown")
+
+                }
+            }
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                AsyncImage(
+                    model = character.image,
+                    contentDescription = character.name ?: "Unknown"
+                )
+            }
         }
     }
 }
