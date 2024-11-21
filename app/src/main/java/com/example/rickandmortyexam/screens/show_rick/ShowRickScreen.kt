@@ -39,6 +39,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     )
     {
         Text("Show Rick Screen", style = Typography.headlineLarge)
+<<<<<<< Updated upstream
 
 
         Box(
@@ -46,6 +47,12 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                 .fillMaxWidth()
                 .padding(10.dp),
             contentAlignment = Alignment.Center
+=======
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween, // Distribució
+            verticalAlignment = Alignment.CenterVertically // Alineación vertical
+>>>>>>> Stashed changes
         ) {
             Button(onClick = {
                 expandedMenu = true
@@ -70,6 +77,21 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                     )
                 }
             }
+<<<<<<< Updated upstream
+=======
+            Button(onClick = {
+                showRickViewModel.showDeadCharacters()
+            }) {
+                Text("Show dead")
+            }
+
+        Button(onClick = {
+
+            showRickViewModel.setCharacter()
+        }) {
+            Text("Get all characters")
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         }
 
         LazyColumn(
