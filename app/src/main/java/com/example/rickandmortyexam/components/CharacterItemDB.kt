@@ -45,14 +45,6 @@ fun CharacterItemDB(character: RoomRMCharacter) {
                 text = "Species: ${character.species}",
                 style = Typography.headlineSmall
             )
-            Text(
-                text = "Type: ${character.type}",
-                style = Typography.headlineSmall
-            )
-            Text(
-                text = "Gender: ${character.gender}",
-                style = Typography.headlineSmall
-            )
         }
 
     }

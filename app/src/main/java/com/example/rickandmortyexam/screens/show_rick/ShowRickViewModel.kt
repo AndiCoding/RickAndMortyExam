@@ -40,5 +40,6 @@ class ShowRickViewModel: ViewModel() {
             _characters.value = allCharacters.filter { it.status.equals("dead", ignoreCase = true) }
         }
     }
+
 }
 

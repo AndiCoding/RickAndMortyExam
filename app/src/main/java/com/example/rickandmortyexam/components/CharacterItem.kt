@@ -25,7 +25,7 @@ fun CharacterItem(character: ApiRMCharacter) {
             ){
                 Column {
                     Text(text = "Id: " + character.id.toString())
-                    Text(text = "Name: " + character.name ?: "Unknown")
+                    Text("Name: " + character.name)
 
                 }
             }
