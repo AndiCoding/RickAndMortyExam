@@ -16,6 +16,7 @@ import com.example.rickandmortyexam.components.PrevNextButtons
 import com.example.rickandmortyexam.ui.theme.Typography
 
 
+
 @Composable
 fun ApiRickScreen(apiRickViewModel: ApiRickViewModel) {
     val characters = apiRickViewModel.characters.collectAsState()
@@ -45,18 +46,19 @@ fun ApiRickScreen(apiRickViewModel: ApiRickViewModel) {
             onValueChange = { apiRickViewModel.setStatusText(it)},
             label = { Text("Character Status") }
         )
+        Text(apiRickViewModel.searchResult.collectAsState().value)
+
         Row {
-            Button(onClick = { apiRickViewModel.searchCharacters(nameField.value, statusField.value) }) {
+            Button(onClick = { apiRickViewModel.searchCharacters() }) {
                 Text("Search")
             }
 
-            // displays the result text of the search
-            Text(apiRickViewModel.searchResult.collectAsState().value)
-
         }
 
-
-
-        PrevNextButtons(apiRickViewModel::prevCharacters, apiRickViewModel::nextCharacters)
+        PrevNextButtons(
+            apiRickViewModel::prevCharacters,
+            apiRickViewModel::nextCharacters,
+            apiRickViewModel.pageNumber.collectAsState().value
+        )
     }
 }
