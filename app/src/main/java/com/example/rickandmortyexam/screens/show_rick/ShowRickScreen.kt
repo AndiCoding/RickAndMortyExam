@@ -27,35 +27,60 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.SpaceAround,
     )
     {
         Text("Show Rick Screen", style = Typography.headlineLarge)
-        Button(onClick = {
-            showRickViewModel.getCharacter()
-        }) {
-            Text("Reload characters")
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(onClick = {
+                showRickViewModel.getCharacter()
+            }) {
+                Text("Reload all characters")
+            }
+            Button(onClick = {
+                showRickViewModel.showAliveCharacters()
+            }) {
+                Text("Show alive characters")
+            }
+            Button(onClick = {
+                showRickViewModel.showDeadCharacters()
+            }) {
+                Text("Show dead characters")
+            }
+
         }
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
-        ){
+        ) {
             items(characters.value) { character ->
+                val boxColor = if (character.status.equals("Alive", ignoreCase = true)) {
+                    Color.Green
+                } else {
+                    Color.Red
+                }
 
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
-                        .border(1.dp, Color.LightGray),
+                        .border(1.dp, Color.LightGray)
+                        .background(boxColor)
 
 
                 ) {
                     Column(
                         modifier = Modifier.padding(16.dp)
-                    ){
+                    ) {
                         Text(text = "Name: ${character.name}", style = Typography.headlineSmall)
                         Text(text = "Status: ${character.status}", style = Typography.headlineSmall)
-                        Text(text = "Species: ${character.species}", style = Typography.headlineSmall)
+                        Text(
+                            text = "Species: ${character.species}",
+                            style = Typography.headlineSmall
+                        )
                         Text(text = "Type: ${character.type}", style = Typography.headlineSmall)
                         Text(text = "Gender: ${character.gender}", style = Typography.headlineSmall)
                     }
