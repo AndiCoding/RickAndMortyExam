@@ -7,11 +7,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,6 +24,7 @@ import com.example.rickandmortyexam.data.data_classes.ApiRMCharacter
 
 @Composable
 fun CharacterItem(character: ApiRMCharacter) {
+
 
     val statusColor = character.status.toString().let {
         when(it){
@@ -46,14 +44,11 @@ fun CharacterItem(character: ApiRMCharacter) {
 
 
 
-    Box(modifier = Modifier.fillMaxWidth().border(1.dp, Color.Black), contentAlignment = Alignment.Center) {
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .border(1.dp, Color.Black),
+        contentAlignment = Alignment.Center) {
         Column {
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ){
-
-            }
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

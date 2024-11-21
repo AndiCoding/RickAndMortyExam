@@ -9,16 +9,16 @@ import kotlinx.coroutines.flow.asStateFlow
 // in the ApiRickScreen
 
 object TextFieldState {
-    val _statusText = MutableStateFlow("")
-    val statusText: StateFlow<String> = _statusText.asStateFlow()
+    private val updateStatusText = MutableStateFlow("")
+    val statusText: StateFlow<String> = updateStatusText.asStateFlow()
 
-    val _nameText = MutableStateFlow("")
-    val nameText: StateFlow<String> = _nameText.asStateFlow()
+    private val updateNameText = MutableStateFlow("")
+    val nameText: StateFlow<String> = updateNameText.asStateFlow()
 
     fun setNameText(name: String) {
-        _nameText.value = name
+        updateNameText.value = name
     }
     fun setStatusText(status: String) {
-        _statusText.value = status
+        updateStatusText.value = status
     }
 }
