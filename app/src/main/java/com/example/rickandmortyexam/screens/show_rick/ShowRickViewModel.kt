@@ -16,13 +16,17 @@ class ShowRickViewModel: ViewModel() {
 
     private var allCharacters = listOf<RoomRMCharacter>()
 
+    init {
+        getCharacter()
+    }
+
 
     fun getCharacter(){
         viewModelScope.launch (Dispatchers.IO) {
-            allCharacters = CharacterDatabaseRepository.getDatabaseCharacters().map { character ->
+            _characters.value = CharacterDatabaseRepository.getDatabaseCharacters()
+            allCharacters = _characters.value.map { character ->
                 character.copy(status = character.status.lowercase())
             }
-            _characters.value = CharacterDatabaseRepository.getDatabaseCharacters()
 
         }
     }

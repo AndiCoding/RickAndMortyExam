@@ -26,13 +26,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.rickandmortyexam.components.CharacterItemDB
 import com.example.rickandmortyexam.ui.theme.Typography
 
 @Composable
 fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
     val characters = showRickViewModel.character.collectAsState() //observe the characters
     var expandedMenu by remember { mutableStateOf(false) }
-    val options = listOf("Reload all characters", "Show alive characters", "Show dead characters")
+    val options = listOf("Show all characters", "Show alive characters", "Show dead characters")
 
     Column(
         modifier = Modifier
@@ -56,8 +57,8 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(10.dp),
-                horizontalArrangement = Arrangement.SpaceBetween, // Distribució
-                verticalAlignment = Alignment.CenterVertically // Alineación vertical
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
 
             ) {
                 Button(onClick = {
@@ -74,7 +75,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                             onClick = {
                                 expandedMenu = false
                                 when (option) {
-                                    "Reload all characters" -> showRickViewModel.getCharacter()
+                                    "Show all characters" -> showRickViewModel.getCharacter()
                                     "Show alive characters" -> showRickViewModel.showAliveCharacters()
                                     "Show dead characters" -> showRickViewModel.showDeadCharacters()
                                 }
@@ -91,44 +92,7 @@ fun ShowRickScreen(showRickViewModel: ShowRickViewModel) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(characters.value) { character ->
-                    val boxColor = if (character.status.equals("Alive", ignoreCase = true)) {
-                        Color.Green
-                    } else {
-                        Color.Red
-                    }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp)
-                            .border(1.dp, Color.LightGray)
-                            .background(boxColor)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(16.dp)
-                        ) {
-                            Text(
-                                text = "Name: ${character.name}",
-                                style = Typography.headlineSmall
-                            )
-                            Text(
-                                text = "Status: ${character.status}",
-                                style = Typography.headlineSmall
-                            )
-                            Text(
-                                text = "Species: ${character.species}",
-                                style = Typography.headlineSmall
-                            )
-                            Text(
-                                text = "Type: ${character.type}",
-                                style = Typography.headlineSmall
-                            )
-                            Text(
-                                text = "Gender: ${character.gender}",
-                                style = Typography.headlineSmall
-                            )
-                        }
-
-                    }
+                    CharacterItemDB(character)
                 }
             }
     }
