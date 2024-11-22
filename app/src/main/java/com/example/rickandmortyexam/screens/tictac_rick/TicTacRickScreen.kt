@@ -27,8 +27,7 @@ import com.example.rickandmortyexam.ui.theme.Typography
 @Composable
 fun TicTacRickScreen(viewModel: TicTacRickViewModel) {
     val board by viewModel.board
-    val currentPlayer by viewModel.currentPlayer
-    val winner by viewModel.winner
+    val winnerMessage = viewModel.getWinnerMessage()
 
     Column(
         modifier = Modifier
@@ -43,20 +42,7 @@ fun TicTacRickScreen(viewModel: TicTacRickViewModel) {
     ) {
         Text("Tic-Tac Rick", style = Typography.headlineLarge)
 
-        if (winner != null) {
-            Text(
-                text = when (winner) {
-                    "Rick" -> "Rick Wins!"
-                    "Morty" -> "Morty Wins!"
-                    "Draw" -> "It's a Draw!"
-                    else -> ""
-                },
-                style = Typography.headlineMedium,
-                color = Color.Red
-            )
-        } else {
-            Text("Current Player: $currentPlayer", style = Typography.bodyLarge)
-        }
+        Text(winnerMessage, style = Typography.headlineMedium, color = Color.Red)
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             for (row in 0 until 3) {

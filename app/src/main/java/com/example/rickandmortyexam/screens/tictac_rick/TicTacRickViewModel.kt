@@ -62,4 +62,13 @@ class TicTacRickViewModel : ViewModel() {
         rickPositions.clear()
         mortyPositions.clear()
     }
+
+    fun getWinnerMessage(): String {
+        return when (winner.value) {
+            "Rick" -> "Rick Wins!"
+            "Morty" -> "Morty Wins!"
+            "Draw" -> "It's a Draw!"
+            else -> "Current Player: ${currentPlayer.value}"
+        }
+    }
 }
