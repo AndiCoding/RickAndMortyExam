@@ -24,6 +24,8 @@ class ShowRickViewModel: ViewModel() {
 
 
     //function to get the characters from the database
+    // turns their status to lowercase, so easier to compare
+    // if the user types in uppercase
     fun getCharacter(){
         viewModelScope.launch (Dispatchers.IO) {
             _characters.value = CharacterDatabaseRepository.getDatabaseCharacters()
