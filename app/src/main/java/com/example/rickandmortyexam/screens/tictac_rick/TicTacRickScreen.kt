@@ -28,21 +28,37 @@ import com.example.rickandmortyexam.ui.theme.Typography
 fun TicTacRickScreen(viewModel: TicTacRickViewModel) {
     val board by viewModel.board
     val currentPlayer by viewModel.currentPlayer
+    val winner by viewModel.winner
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 Brush.verticalGradient(
-                    listOf(Color.Green, Color.Blue))
+                    listOf(Color.Green, Color.Blue)
+                )
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text("Tic-Tac Rick", style = Typography.headlineLarge)
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        if (winner != null) {
+            Text(
+                text = when (winner) {
+                    "Rick" -> "Rick Wins!"
+                    "Morty" -> "Morty Wins!"
+                    "Draw" -> "It's a Draw!"
+                    else -> ""
+                },
+                style = Typography.headlineMedium,
+                color = Color.Red
+            )
+        } else {
             Text("Current Player: $currentPlayer", style = Typography.bodyLarge)
+        }
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             for (row in 0 until 3) {
                 Row {
                     for (col in 0 until 3) {
@@ -54,10 +70,15 @@ fun TicTacRickScreen(viewModel: TicTacRickViewModel) {
                                 .clickable { viewModel.makeMove(row, col) },
                             contentAlignment = Alignment.Center
                         ) {
-                            if (player == "Rick") {
-                                Image(painter = painterResource(id = R.drawable.rick_face), contentDescription = "Rick")
-                            } else if (player == "Morty") {
-                                Image(painter = painterResource(id = R.drawable.morty_face), contentDescription = "Morty")
+                            when (player) {
+                                "Rick" -> Image(
+                                    painter = painterResource(id = R.drawable.rick_face),
+                                    contentDescription = "Rick"
+                                )
+                                "Morty" -> Image(
+                                    painter = painterResource(id = R.drawable.morty_face),
+                                    contentDescription = "Morty"
+                                )
                             }
                         }
                     }
@@ -66,13 +87,7 @@ fun TicTacRickScreen(viewModel: TicTacRickViewModel) {
             Button(onClick = { viewModel.resetGame() }) {
                 Text("Reset Game")
             }
-
         }
         Spacer(modifier = Modifier.size(64.dp))
-
-
-
-
-
     }
 }
